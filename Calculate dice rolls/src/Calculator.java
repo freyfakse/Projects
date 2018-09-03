@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//WIP
+
 public class Calculator {
 	
 	String scannerInput = new String();
@@ -9,8 +11,6 @@ public class Calculator {
 	
 	public Calculator()
 	{
-		
-		
 		while(!scannerInput.equals("exit"))
 		{
 			setup();
@@ -20,31 +20,43 @@ public class Calculator {
 				System.out.println("Største verdi: " +maxValue(int_quantity,int_quality));
 				System.out.println("Mest sannsynlige verdi: " +mostLikelyValue(int_quantity,int_quality));
 			}
-			
 		}
 	}
 	
 	public int mostLikelyValue(int quantity,int quality)
 	{
-		ArrayList dices = new ArrayList();
+		int sum;
+		int outcomesSize =(int) Math.pow(quality, quantity);
+		int[][] dices = new int[quantity][quality];
+		int[] outcomes = new int[outcomesSize];
 		
-		for(int i=0;i<quantity;i++)
+		//sets up the dices
+		for(int x=0; x<quantity; x++)
 		{
-			dices[i] = 1;
+			for(int n=0; n<quality; n++)
+			{
+				dices[x][n]=n+1;
+				System.out.println(dices[x][n]);
+			}
 		}
 		
-		for(int x=1; x<=quantity; x++)
+		//rolls all dice combinations
+		for(int i=0;i<outcomesSize;i++)
 		{
-			for(int n=1; n<=quality; n++)
+			for(int x=0; x<quantity; x++)
 			{
-				//System.out.println(n);
-				
+				for(int n=0; n<quality; n++)
+				{
+					int aThrow = dices[x][n] + dices[x][n+1];
+				}
 			}
 		}
 		
 		
 		
-		int sum = 0;
+		System.out.println("len: " +outcomes.length);
+		
+		sum=0;
 		
 		return sum;
 	}
@@ -63,7 +75,6 @@ public class Calculator {
 		scannerInput = scanner.nextLine();
 		//scanner.close(); No, don't close. Stops System.in input stream
 		
-		//if(scannerInput != "exit")
 		try
 		{
 			divided_input = scannerInput.split("d");
