@@ -25,7 +25,16 @@ public class Calculator {
 	
 	public int mostLikelyValue(int quantity,int quality)
 	{
+		//
+		//((x*n)/2)+(x/2)
+		//
+		
+		
+		
+		
 		int sum;
+		
+		/*
 		int outcomesSize =(int) Math.pow(quality, quantity);
 		int[][] dices = new int[quantity][quality];
 		int[] outcomes = new int[outcomesSize];
@@ -56,7 +65,9 @@ public class Calculator {
 		
 		System.out.println("len: " +outcomes.length);
 		
-		sum=0;
+		*/
+		
+		sum=((quantity*quality)/2)+(quantity/2);
 		
 		return sum;
 	}
