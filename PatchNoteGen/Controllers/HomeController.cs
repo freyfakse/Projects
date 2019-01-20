@@ -22,6 +22,7 @@ namespace PatchNoteGen.Controllers
 
         public IActionResult Overwatch()
         {
+            Console.WriteLine("test");
             return View();
         }
 

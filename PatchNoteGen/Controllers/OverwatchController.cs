@@ -10,6 +10,12 @@ namespace PatchNoteGen.Controllers
 {
     public class OverwatchController : Controller
     {
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult button()
+        {
+            Console.WriteLine("test2");
+            return View();
+        }
     }
 }
