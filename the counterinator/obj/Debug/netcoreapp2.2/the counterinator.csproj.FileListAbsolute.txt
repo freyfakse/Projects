@@ -28,3 +28,5 @@ C:\Users\Jonas\Documents\Github\Projects\the counterinator\obj\Debug\netcoreapp2
 C:\Users\Jonas\Documents\Github\Projects\the counterinator\obj\Debug\netcoreapp2.2\the counterinator.dll
 C:\Users\Jonas\Documents\Github\Projects\the counterinator\obj\Debug\netcoreapp2.2\the counterinator.pdb
 C:\Users\Jonas\Documents\Github\Projects\the counterinator\obj\Debug\netcoreapp2.2\the counterinator.csproj.CopyComplete
+C:\Users\Jonas\Documents\Github\Projects\the counterinator\obj\Debug\netcoreapp2.2\Razor\Views\Home\CounterUsingGetPost.g.cshtml.cs
+C:\Users\Jonas\Documents\Github\Projects\the counterinator\obj\Debug\netcoreapp2.2\Razor\Views\Home\Landing.g.cshtml.cs

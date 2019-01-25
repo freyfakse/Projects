@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "v1 - javascript";
 }
 <!--
 TODO make counter
@@ -9,7 +9,27 @@ TODO add possibility to add more counters
 	<input value="Counter">
 </div>
 <div class="text-center">
-	<input type=button value="-" class="btn btn-danger">
-	<input value="0">
-	<input type=button value="+" class="btn btn-success">
+	<input type=button value="-" class="btn btn-danger" id="minus">
+	<input value="0" id="numberField">
+	<input type=button value="+" class="btn btn-success" id="plus">
 </div>
+
+<script>
+$(document).ready(function()
+{
+	window.log("1");
+	$('#numberField').val()=0;
+	$('#minus').click(Increment);
+	$('#plus').click(Decrement);
+	window.log("2");
+}
+function Increment()
+{
+	window.log("3")
+	$('#numberField').val() += 1;
+}
+function Decrement()
+{
+	$('#numberField').val() -= 1;
+}
+</script>

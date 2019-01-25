@@ -10,7 +10,17 @@ namespace the_counterinator.Controllers
 {
     public class HomeController : Controller
     {
+        public IActionResult Landing()
+        {
+            return View();
+        }
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult CounterUsingGetPost()
         {
             return View();
         }
