@@ -13,13 +13,14 @@ namespace dnd_sheet_stat_roller
             Console.WriteLine("Hello World!");
 
             Roll6();
+            
             Console.ReadKey();
         }
 
         private static void Roll6()
         {
             Random rng = new Random();
-            System.Threading.Thread.Sleep(250);//for loops iterate too fast, causes same seed for 'rng'
+            System.Threading.Thread.Sleep(250);//for loops iterates too fast, causes same seed for 'rng'
 
             for (int i=0; i<6;i++)
             {
@@ -33,7 +34,7 @@ namespace dnd_sheet_stat_roller
                 {
                     int i_aRoll = rng.Next(1, 7);
                     arr_Rolls[m] = i_aRoll;
-                    Console.WriteLine("rolls :" + i_aRoll);
+                    Console.WriteLine("Rolls: " + i_aRoll);
                 }
 
                 for (int n = 0; n < 4; n++)
@@ -67,9 +68,10 @@ namespace dnd_sheet_stat_roller
                     }
                 }
 
-                for (int n = 0; n < 3; n++){ Console.WriteLine(n + ": " + arr_BestRolls[n]); }
+                for (int n = 0; n < 3; n++){ Console.WriteLine("High roll #" +(n+1) + ": " + arr_BestRolls[n]); }
                 int i_sum = arr_BestRolls.Sum();
                 Console.WriteLine("Total: " +i_sum);
+                Console.WriteLine(" ");//new line between roll sets
             }
         }
     }
