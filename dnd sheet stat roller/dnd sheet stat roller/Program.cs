@@ -20,7 +20,7 @@ namespace dnd_sheet_stat_roller
         private static void Roll6()
         {
             Random rng = new Random();
-            System.Threading.Thread.Sleep(250);//for loops iterates too fast, causes same seed for 'rng'
+            System.Threading.Thread.Sleep(1000);//for loops iterates too fast, causes same seed for 'rng'
 
             for (int i=0; i<6;i++)
             {
