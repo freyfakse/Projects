@@ -8,26 +8,31 @@ namespace dnd_sheet_stat_roller
 {
     class Class1
     {
-        int i_state = 0;
+        //int state = 0;
+        enum States
+        {
+            RunState,
+            AskState,
+            ExitState,
+        }
+
+        States state = States.RunState;
+        
 
         public Class1()
         {
-            string str_answer; 
-            
-            Roll6();
-            Console.WriteLine("Reroll (y or n)?");
-            str_answer = Console.ReadLine();
+            string answer; 
 
-            while (i_state==0)
+            while (state==States.RunState)
             {
                 Roll6();
 
-                i_state = 2;
-                while(i_state==2)
+                state = States.AskState;
+                while(state==States.AskState)
                 {
                     Console.WriteLine("Reroll (y or n)?");
-                    str_answer = Console.ReadLine();
-                    reroll(str_answer);
+                    answer = Console.ReadLine();
+                    reroll(answer);
                 }
             }
 
@@ -35,21 +40,21 @@ namespace dnd_sheet_stat_roller
             Console.ReadKey();
         }
 
-        public void reroll(string str_answer)
+        public void reroll(string answer)
         {
-            if (str_answer.Equals("y"))
+            if (answer.Equals("y"))
             {
                 Console.WriteLine("New rolls:");
-                i_state = 0;
+                state = States.RunState;
             }
-            else if (str_answer.Equals("n"))
+            else if (answer.Equals("n"))
             {
-                i_state = 1;
+                state = States.ExitState;
             }
             else
             {
                 Console.WriteLine("Invalid input");
-                i_state = 2;
+                state = States.AskState;
             }
         }
 
@@ -60,36 +65,36 @@ namespace dnd_sheet_stat_roller
 
             for (int i = 0; i < 6; i++)
             {
-                int[] arr_Rolls = new int[4];
-                int[] arr_BestRolls = new int[3];
-                int i_lowestValuePos = 7;
-                int i_lowestValue = 7;
-                int i_offsetInsert = 0;
+                int[] rolls = new int[4];
+                int[] bestRolls = new int[3];
+                int lowestValuePos = 7;
+                int lowestValue = 7;
+                int offsetInsert = 0;
 
                 for (int m = 0; m < 4; m++)
                 {
                     int i_aRoll = rng.Next(1, 7);
-                    arr_Rolls[m] = i_aRoll;
+                    rolls[m] = i_aRoll;
                     Console.WriteLine("Rolls: " + i_aRoll);
                 }
 
                 for (int n = 0; n < 4; n++)
                 {
-                    if (i_lowestValue > arr_Rolls[n])
+                    if (lowestValue > rolls[n])
                     {
-                        i_lowestValue = arr_Rolls[n];
-                        i_lowestValuePos = n;
+                        lowestValue = rolls[n];
+                        lowestValuePos = n;
                     }
                 }
 
                 for (int f = 0; f < 4; f++)//populate the smaller array with 3 highest rolls
                 {
-                    if (f == i_lowestValuePos)
+                    if (f == lowestValuePos)
                     {
                         if (f == 0 || f == 1)
                         {
-                            i_offsetInsert = 1;
-                            arr_BestRolls[f] = arr_Rolls[f + i_offsetInsert];
+                            offsetInsert = 1;
+                            bestRolls[f] = rolls[f + offsetInsert];
                         }
                     }
 
@@ -97,16 +102,16 @@ namespace dnd_sheet_stat_roller
                     {
                         if (f == 3) //to prevent out of bounds exception, also handles f==2
                         {
-                            i_offsetInsert = 1;
-                            arr_BestRolls[f - i_offsetInsert] = arr_Rolls[f];
+                            offsetInsert = 1;
+                            bestRolls[f - offsetInsert] = rolls[f];
                         }
-                        else { arr_BestRolls[f] = arr_Rolls[f + i_offsetInsert]; }
+                        else { bestRolls[f] = rolls[f + offsetInsert]; }
                     }
                 }
 
-                for (int n = 0; n < 3; n++) { Console.WriteLine("High roll #" + (n + 1) + ": " + arr_BestRolls[n]); }
-                int i_sum = arr_BestRolls.Sum();
-                Console.WriteLine("Total: " + i_sum);
+                for (int n = 0; n < 3; n++) { Console.WriteLine("High roll #" + (n + 1) + ": " + bestRolls[n]); }
+                int sum = bestRolls.Sum();
+                Console.WriteLine("Total: " + sum);
                 Console.WriteLine(" ");//new line between roll sets
             }
         }
