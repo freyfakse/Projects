@@ -12,12 +12,12 @@ namespace dnd_sheet_stat_roller
         enum States
         {
             RunState,
-            AskState,
+            AskToQuitState,
             ExitState,
         }
 
         States state = States.RunState;
-        
+        Random rng = new Random();
 
         public Class1()
         {
@@ -27,8 +27,8 @@ namespace dnd_sheet_stat_roller
             {
                 Roll6();
 
-                state = States.AskState;
-                while(state==States.AskState)
+                state = States.AskToQuitState;
+                while(state==States.AskToQuitState)
                 {
                     Console.WriteLine("Reroll (y or n)?");
                     answer = Console.ReadLine();
@@ -44,7 +44,7 @@ namespace dnd_sheet_stat_roller
         {
             if (answer.Equals("y"))
             {
-                Console.WriteLine("New rolls:");
+                Console.WriteLine("\r\n" +"NEW ROLLS:");
                 state = States.RunState;
             }
             else if (answer.Equals("n"))
@@ -54,15 +54,12 @@ namespace dnd_sheet_stat_roller
             else
             {
                 Console.WriteLine("Invalid input");
-                state = States.AskState;
+                state = States.AskToQuitState;
             }
         }
 
         public void Roll6()
         {
-            Random rng = new Random();
-            System.Threading.Thread.Sleep(1000);//for loops iterates too fast, causes same seed for 'rng'
-
             for (int i = 0; i < 6; i++)
             {
                 int[] rolls = new int[4];
@@ -73,9 +70,8 @@ namespace dnd_sheet_stat_roller
 
                 for (int m = 0; m < 4; m++)
                 {
-                    int i_aRoll = rng.Next(1, 7);
-                    rolls[m] = i_aRoll;
-                    Console.WriteLine("Rolls: " + i_aRoll);
+                    int aRoll = rng.Next(1, 7);
+                    rolls[m] = aRoll;
                 }
 
                 for (int n = 0; n < 4; n++)
@@ -109,16 +105,10 @@ namespace dnd_sheet_stat_roller
                     }
                 }
 
-                for (int n = 0; n < 3; n++) { Console.WriteLine("High roll #" + (n + 1) + ": " + bestRolls[n]); }
                 int sum = bestRolls.Sum();
                 Console.WriteLine("Total: " + sum);
-                Console.WriteLine(" ");//new line between roll sets
             }
-        }
-
-        
+            Console.WriteLine("");
+        }   
     }
-
-
-    
 }
